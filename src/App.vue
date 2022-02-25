@@ -3,6 +3,7 @@
 
   import MapView from './components/MapView.vue'
   import MyLocationButton from './components/MyLocationButton.vue'
+  import SearchBar from './components/SearchBar.vue'
 
   usePlacesStore()
 </script>
@@ -11,5 +12,6 @@
   <div id="app">
     <MapView />
     <MyLocationButton />
+    <SearchBar />
   </div>
 </template>

@@ -15,10 +15,19 @@ export const usePlacesStore = () => {
     // state
     isLoading: computed(() => store.state.places.isLoading),
     userLocation: computed(() => store.state.places.userLocation),
+    searchResults: computed(() => store.state.places.searchResults),
+    waitingSearchResults: computed(
+      () => store.state.places.waitingSearchResults
+    ),
 
     //getters
     isUserLocationReady: computed<Boolean>(
       () => store.getters['places/isUserLocationReady']
     ),
+
+    // actions
+    searchPlacesByKeyword: (query = '') => {
+      store.dispatch('places/searchPlacesByKeyword', query)
+    },
   }
 }
