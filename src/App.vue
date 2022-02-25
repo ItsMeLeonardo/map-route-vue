@@ -1,9 +1,13 @@
+<script setup lang="ts">
+  import { usePlacesStore } from './composables'
+
+  import MapView from './components/MapView.vue'
+
+  usePlacesStore()
+</script>
+
 <template>
   <div id="app">
-    <h1 class="text-xl">Hello world :D</h1>
+    <MapView />
   </div>
 </template>
-
-<script setup lang="ts">
-  import HelloWorld from './components/HelloWorld.vue'
-</script>
