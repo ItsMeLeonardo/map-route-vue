@@ -2,8 +2,10 @@
   import { ref, onMounted, watch } from 'vue'
   import Mapbox from 'mapbox-gl'
 
-  import { usePlacesStore } from '../composables'
+  import { usePlacesStore, useMapStore } from '../composables'
+
   const { userLocation, isLoading, isUserLocationReady } = usePlacesStore()
+  const { setMap } = useMapStore()
 
   const mapContainerRef = ref<HTMLDivElement>()
 
@@ -26,6 +28,9 @@
       .setLngLat(userLocation.value)
       .setPopup(popup)
       .addTo(map)
+
+    // add map to global state
+    setMap(map)
   }
 
   onMounted(() => {
