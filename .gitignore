@@ -25,3 +25,4 @@ dist-ssr
 
 
 module-template
+.env

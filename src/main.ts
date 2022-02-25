@@ -2,9 +2,9 @@ import { createApp } from 'vue'
 import store from './store'
 
 import mapboxgl from 'mapbox-gl'
-mapboxgl.accessToken =
-  'pk.eyJ1IjoiaXRzbWVsZW9uYXJkbyIsImEiOiJja3ZzcmpoMTU0czBtMm9tbHZhbTMzYTFrIn0.fgwmkMuUlIaqcnXtQjbWfQ'
+const token = import.meta.env.VITE_API_KEY
 
+mapboxgl.accessToken = token
 import App from './App.vue'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './index.css'
