@@ -3,6 +3,7 @@
   import Mapbox from 'mapbox-gl'
 
   import { usePlacesStore, useMapStore } from '../composables'
+  import customMarker from './mapComponents/avatarMarker'
 
   const { userLocation, isLoading, isUserLocationReady } = usePlacesStore()
   const { setMap } = useMapStore()
@@ -24,7 +25,7 @@
       .setLngLat(userLocation.value)
       .setHTML('<p>You are here</p>')
 
-    const myLocationMarker = new Mapbox.Marker()
+    const myLocationMarker = new Mapbox.Marker(customMarker)
       .setLngLat(userLocation.value)
       .setPopup(popup)
       .addTo(map)
