@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
 
   import { Feature } from '../interfaces/places'
   import { usePlacesStore, useMapStore } from '../composables'
 
   const { searchResults } = usePlacesStore()
-  const { map } = useMapStore()
+  const { map, setMarkers } = useMapStore()
 
   const placeActive = ref('')
   const onPlaceClick = (place: Feature) => {
@@ -19,6 +19,14 @@
       essential: true,
     })
   }
+
+  watch(
+    searchResults,
+    (newPlaces) => {
+      setMarkers(newPlaces)
+    },
+    { immediate: true }
+  )
 </script>
 
 <template>
