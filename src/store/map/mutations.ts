@@ -84,6 +84,14 @@ const mutations: MutationTree<MapState> = {
       },
     })
   },
+
+  setRouteDuration(state, duration: number) {
+    state.duration = duration
+  },
+
+  setRouteDistance(state, distance: number) {
+    state.distance = distance
+  },
 }
 
 export default mutations

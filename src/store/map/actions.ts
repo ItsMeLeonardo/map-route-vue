@@ -18,7 +18,10 @@ const actions: ActionTree<MapState, StateInterface> = {
       `${start.join(',')};${end.join(',')}`
     )
     const coordinates = response.data.routes[0].geometry.coordinates
+    const { duration, distance } = response.data.routes[0]
     commit('setRoutePolyline', coordinates)
+    commit('setRouteDuration', duration)
+    commit('setRouteDistance', distance)
   },
 }
 
