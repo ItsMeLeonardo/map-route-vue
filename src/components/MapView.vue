@@ -4,6 +4,7 @@
 
   import { usePlacesStore, useMapStore } from '../composables'
   import customMarker from './mapComponents/avatarMarker'
+  import createCustomPopup from './mapComponents/customPopup'
 
   const { userLocation, isLoading, isUserLocationReady } = usePlacesStore()
   const { setMap } = useMapStore()
@@ -21,9 +22,12 @@
       zoom: 9,
     })
 
-    const popup = new Mapbox.Popup()
+    const popup = new Mapbox.Popup({
+      offset: [0, -20],
+      className: 'custom-popup',
+    })
       .setLngLat(userLocation.value)
-      .setHTML('<p>You are here</p>')
+      .setHTML(createCustomPopup('you are here'))
 
     const myLocationMarker = new Mapbox.Marker(customMarker)
       .setLngLat(userLocation.value)
@@ -60,3 +64,10 @@
     />
   </section>
 </template>
+
+<style>
+  .custom-popup .mapboxgl-popup-content {
+    padding: 0;
+    border-radius: 30%;
+  }
+</style>
