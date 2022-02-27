@@ -4,8 +4,8 @@
   import { Feature } from '../interfaces/places'
   import { usePlacesStore, useMapStore } from '../composables'
 
-  const { searchResults } = usePlacesStore()
-  const { map, setMarkers } = useMapStore()
+  const { searchResults, userLocation } = usePlacesStore()
+  const { map, setMarkers, getRouteBetweenPoints } = useMapStore()
 
   const placeActive = ref('')
   const onPlaceClick = (place: Feature) => {
@@ -18,6 +18,11 @@
       zoom: 10,
       essential: true,
     })
+
+    //get route
+    if (!userLocation.value) return
+    const [startLng, startLat] = userLocation.value
+    getRouteBetweenPoints({ start: [startLng, startLat], end: [lng, lat] })
   }
 
   watch(
@@ -46,7 +51,6 @@
         class="max-w-full text-xs text-ellipsis whitespace-nowrap overflow-hidden"
       >
         {{ place.place_name }}
-        <button class="btn-primary">adad</button>
       </p>
     </li>
   </ul>
