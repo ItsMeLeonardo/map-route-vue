@@ -17,7 +17,8 @@ const actions: ActionTree<MapState, StateInterface> = {
     const response = await routeApi.get<RouteMapResponse>(
       `${start.join(',')};${end.join(',')}`
     )
-    console.log({ response })
+    const coordinates = response.data.routes[0].geometry.coordinates
+    commit('setRoutePolyline', coordinates)
   },
 }
 

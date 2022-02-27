@@ -22,6 +22,7 @@
     //get route
     if (!userLocation.value) return
     const [startLng, startLat] = userLocation.value
+
     getRouteBetweenPoints({ start: [startLng, startLat], end: [lng, lat] })
   }
 

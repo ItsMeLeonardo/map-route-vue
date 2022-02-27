@@ -16,7 +16,7 @@
 
     const map = new Mapbox.Map({
       container: mapContainerRef.value,
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: 'mapbox://styles/mapbox/dark-v10',
       center: userLocation.value,
       zoom: 9,
     })
