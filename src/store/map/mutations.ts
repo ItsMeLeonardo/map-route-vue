@@ -55,9 +55,9 @@ const mutations: MutationTree<MapState> = {
       lineMetrics: true,
     }
 
-    if (state.map?.getSource('route')) {
-      state.map?.removeSource('route')
+    if (state.map?.getLayer('route')) {
       state.map?.removeLayer('route')
+      state.map?.removeSource('route')
     }
 
     state.map?.addSource('route', sourceData)

@@ -18,7 +18,10 @@
       zoom: 10,
       essential: true,
     })
+  }
 
+  const onGetRoute = (place: Feature) => {
+    const [lng, lat] = place.center
     //get route
     if (!userLocation.value) return
     const [startLng, startLat] = userLocation.value
@@ -43,16 +46,24 @@
     <li
       v-for="place in searchResults"
       :key="place.id"
-      class="bg-white w-full p-2 rounded cursor-pointer transition duration-300 hover:shadow-xl hover:relative active:shadow-inner"
+      class="bg-white flex justify-between w-full p-2 rounded cursor-pointer transition duration-300 hover:shadow-xl hover:relative active:shadow-inner"
       :class="{ 'item-active': place.id === placeActive }"
       @click="onPlaceClick(place)"
     >
-      <h3 class="text-sm font-bold text-indigo-700">{{ place.text }}</h3>
-      <p
-        class="max-w-full text-xs text-ellipsis whitespace-nowrap overflow-hidden"
+      <div class="">
+        <h3 class="text-sm font-bold text-indigo-700">{{ place.text }}</h3>
+        <p
+          class="max-w-[30ch] text-xs text-ellipsis whitespace-nowrap overflow-hidden"
+        >
+          {{ place.place_name }}
+        </p>
+      </div>
+      <button
+        @click.self="onGetRoute(place)"
+        class="p-2 bg-white rounded-lg text-indigo-700 text-sm shadow-xl shadow-indigo-500/20 transition duration-300 hover:bg-indigo-500 hover:text-white"
       >
-        {{ place.place_name }}
-      </p>
+        GO
+      </button>
     </li>
   </ul>
 </template>
