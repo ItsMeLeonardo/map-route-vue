@@ -1,6 +1,12 @@
 <script setup lang="ts">
-  import { useMapStore } from '../composables'
-  const { duration, distance } = useMapStore()
+  import { storeToRefs } from 'pinia'
+
+  import { useMapStore } from '../store'
+  import { formatTime } from '../utils/formatTime'
+  import { formatDistance } from '../utils/formatDistance'
+
+  const mapStore = useMapStore()
+  const { duration, distance } = storeToRefs(mapStore)
 </script>
 
 <template>
@@ -12,13 +18,13 @@
       <div class="flex flex-col justify-end items-center">
         <header class="font-bold text-sm text-white">Route Duration</header>
         <p class="text-sm text-white">
-          {{ duration }}
+          {{ formatTime(duration) }}
         </p>
       </div>
       <div class="flex flex-col justify-end items-center">
         <header class="font-bold text-sm text-white">Route Distance</header>
         <p class="text-sm text-white">
-          {{ distance }}
+          {{ formatDistance(distance) }}
         </p>
       </div>
     </div>

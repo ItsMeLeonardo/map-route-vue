@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import store from './store'
+import { createPinia } from 'pinia'
 
 import mapboxgl from 'mapbox-gl'
 const token = import.meta.env.VITE_API_KEY
@@ -13,4 +13,4 @@ if (!navigator.geolocation) {
   throw new Error('Geolocation is not supported by your browser')
 }
 
-createApp(App).use(store).mount('#app')
+createApp(App).use(createPinia()).mount('#app')

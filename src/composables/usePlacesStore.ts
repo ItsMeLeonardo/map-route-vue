@@ -1,6 +1,6 @@
 import { onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
-import { StateInterface } from '../store'
+import { StateInterface } from '../store/vuex'
 
 export const usePlacesStore = () => {
   const store = useStore<StateInterface>()

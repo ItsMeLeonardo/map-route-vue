@@ -1,19 +1,29 @@
 <script setup lang="ts">
-  import { ref, onMounted, watch } from 'vue'
+  import { ref, onMounted, watch, computed } from 'vue'
+  import { storeToRefs } from 'pinia'
   import Mapbox from 'mapbox-gl'
 
-  import { usePlacesStore, useMapStore } from '../composables'
   import customMarker from './mapComponents/avatarMarker'
   import createCustomPopup from './mapComponents/customPopup'
 
-  const { userLocation, isLoading, isUserLocationReady } = usePlacesStore()
-  const { setMap } = useMapStore()
+  import { useMapStore, usePlaceStore } from '../store'
+
+  const placeStore = usePlaceStore()
+  const mapStore = useMapStore()
+
+  //state
+  const { userLocation, isLoading, isUserLocationReady } =
+    storeToRefs(placeStore)
+  // actions
+  const { getInitialLocation } = placeStore
+  const { setMap } = mapStore
 
   const mapContainerRef = ref<HTMLDivElement>()
 
   const createMap = () => {
     if (!mapContainerRef.value) throw new Error('No map container')
-    if (!userLocation.value) throw new Error('No useLocation container')
+    if (!userLocation) throw new Error('No user location')
+    if (!userLocation.value) throw new Error('No user location')
 
     const map = new Mapbox.Map({
       container: mapContainerRef.value,
@@ -40,6 +50,7 @@
 
   onMounted(() => {
     if (isUserLocationReady.value) return createMap()
+    getInitialLocation()
     console.log('waiting for places to load')
   })
 

@@ -2,10 +2,10 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import Mapbox from 'mapbox-gl'
 
-import { StateInterface } from '../store'
+import { StateInterface } from '../store/vuex'
 
 import { Feature } from '../interfaces/places'
-import { RouteBetweenPoints } from '../store/map/actions'
+import { RouteBetweenPoints } from '../store/vuex/map/actions'
 
 import { formatTime } from '../utils/formatTime'
 import { formatDistance } from '../utils/formatDistance'

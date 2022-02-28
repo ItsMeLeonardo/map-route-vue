@@ -1,11 +1,19 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue'
+  import { storeToRefs } from 'pinia'
 
   import { Feature } from '../interfaces/places'
-  import { usePlacesStore, useMapStore } from '../composables'
 
-  const { searchResults, userLocation } = usePlacesStore()
-  const { map, setMarkers, getRouteBetweenPoints } = useMapStore()
+  import { useMapStore, usePlaceStore } from '../store'
+
+  const placeStore = usePlaceStore()
+  const mapStore = useMapStore()
+
+  // states
+  const { userLocation, searchResults } = storeToRefs(placeStore)
+  const { map } = storeToRefs(mapStore)
+  //actions
+  const { setMarkers, getRouteBetweenPoints } = mapStore
 
   const placeActive = ref('')
   const onPlaceClick = (place: Feature) => {
@@ -13,7 +21,7 @@
 
     const [lng, lat] = place.center
 
-    map.value?.flyTo({
+    map?.value?.flyTo({
       center: [lng, lat],
       zoom: 10,
       essential: true,
@@ -23,8 +31,8 @@
   const onGetRoute = (place: Feature) => {
     const [lng, lat] = place.center
     //get route
-    if (!userLocation.value) return
-    const [startLng, startLat] = userLocation.value
+    if (!userLocation?.value) return
+    const [startLng, startLat] = userLocation?.value
 
     getRouteBetweenPoints({ start: [startLng, startLat], end: [lng, lat] })
   }

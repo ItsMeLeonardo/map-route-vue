@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue'
+  import { storeToRefs } from 'pinia'
 
-  import { usePlacesStore } from '../composables'
+  import { usePlaceStore } from '../store'
 
   //@ts-ignore-next-line
   import SearchResults from './SearchResults.vue'
@@ -10,7 +11,11 @@
 
   import { debounce } from '../utils/debounce'
 
-  const { searchPlacesByKeyword, waitingSearchResults } = usePlacesStore()
+  const placeStore = usePlaceStore()
+  //state
+  const { waitingSearchResults } = storeToRefs(placeStore)
+  //actions
+  const { searchPlacesByKeyword } = placeStore
 
   const keywordToSearch = ref('')
   const onSearch = debounce((event: Event) => {

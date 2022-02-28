@@ -2,7 +2,7 @@ import { MutationTree } from 'vuex'
 import Mapbox from 'mapbox-gl'
 
 import { MapState } from './state'
-import { Feature } from '../../interfaces/places'
+import { Feature } from '../../../interfaces/places'
 
 const mutations: MutationTree<MapState> = {
   setMap(state, map: Mapbox.Map) {

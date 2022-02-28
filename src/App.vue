@@ -1,12 +1,10 @@
 <script setup lang="ts">
-  import { usePlacesStore } from './composables'
+  // import { usePlacesStore } from './composables'
 
-  import MapView from './components/MapView.vue'
   import MyLocationButton from './components/MyLocationButton.vue'
-  import SearchBar from './components/SearchBar.vue'
   import RouteInfo from './components/RouteInfo.vue'
-
-  usePlacesStore()
+  import SearchBar from './components/SearchBar.vue'
+  import MapView from './components/MapView.vue'
 </script>
 
 <template>

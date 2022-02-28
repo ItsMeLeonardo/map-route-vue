@@ -6,6 +6,7 @@ import { searchApi } from '../../service'
 import { PlacesResponse } from '../../interfaces/places'
 
 const actions: ActionTree<PlacesState, StateInterface> = {
+  // with🍍
   getInitialLocation({ commit }) {
     const success: PositionCallback = ({ coords }) => {
       commit('setUserCords', { lng: coords.longitude, lat: coords.latitude })
@@ -17,7 +18,7 @@ const actions: ActionTree<PlacesState, StateInterface> = {
     }
     navigator.geolocation.getCurrentPosition(success, error)
   },
-
+  // with🍍
   async searchPlacesByKeyword({ commit, state }, query: string) {
     if (query.trim().length === 0) {
       commit('setSearchPlaceResults', [])

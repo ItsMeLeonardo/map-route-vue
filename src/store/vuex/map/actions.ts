@@ -2,8 +2,8 @@ import { ActionTree } from 'vuex'
 import { MapState } from './state'
 import { StateInterface } from '../index'
 
-import { RouteMapResponse } from '../../interfaces/routeMap'
-import { routeApi } from '../../service'
+import { RouteMapResponse } from '../../../interfaces/routeMap'
+import { routeApi } from '../../../service'
 
 export type LngLat = [number, number]
 

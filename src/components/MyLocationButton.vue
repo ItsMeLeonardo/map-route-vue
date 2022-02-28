@@ -1,17 +1,22 @@
 <script setup lang="ts">
   import { computed } from 'vue'
+  import { storeToRefs } from 'pinia'
 
-  import { useMapStore, usePlacesStore } from '../composables/'
+  import { useMapStore, usePlaceStore } from '../store'
 
-  const { userLocation, isUserLocationReady } = usePlacesStore()
-  const { map } = useMapStore()
+  const placeStore = usePlaceStore()
+  const mapStore = useMapStore()
 
-  const isButtonReady = computed(() => isUserLocationReady.value && map.value)
+  //states
+  const { userLocation, isUserLocationReady } = storeToRefs(placeStore)
+  const { map } = storeToRefs(mapStore)
+
+  const isButtonReady = computed(() => isUserLocationReady.value && map?.value)
 
   const goToUserLocation = () => {
     if (!isButtonReady.value) return
-    map.value?.flyTo({
-      center: userLocation.value,
+    map?.value?.flyTo({
+      center: userLocation?.value,
       zoom: 9,
       essential: true,
     })
