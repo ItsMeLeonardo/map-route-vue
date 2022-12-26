@@ -1,6 +1,5 @@
 <script setup lang="ts">
   // import { usePlacesStore } from './composables'
-
   import MyLocationButton from './components/MyLocationButton.vue'
   import RouteInfo from './components/RouteInfo.vue'
   import SearchBar from './components/SearchBar.vue'

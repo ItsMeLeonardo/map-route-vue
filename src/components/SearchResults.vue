@@ -49,12 +49,12 @@
 <template>
   <ul
     v-if="searchResults.length > 0"
-    class="p-2 bg-slate-50 rounded flex flex-col gap-2"
+    class="flex flex-col gap-2 p-2 rounded bg-slate-50"
   >
     <li
       v-for="place in searchResults"
       :key="place.id"
-      class="bg-white flex justify-between w-full p-2 rounded cursor-pointer transition duration-300 hover:shadow-xl hover:relative active:shadow-inner"
+      class="flex justify-between w-full p-2 transition duration-300 bg-white rounded cursor-pointer hover:shadow-xl hover:relative active:shadow-inner"
       :class="{ 'item-active': place.id === placeActive }"
       @click="onPlaceClick(place)"
     >
@@ -68,7 +68,7 @@
       </div>
       <button
         @click.self="onGetRoute(place)"
-        class="p-2 bg-white rounded-lg text-indigo-700 text-sm shadow-xl shadow-indigo-500/20 transition duration-300 hover:bg-indigo-500 hover:text-white"
+        class="p-2 text-sm text-indigo-700 transition duration-300 bg-white rounded-lg shadow-xl shadow-indigo-500/20 hover:bg-indigo-500 hover:text-white"
       >
         GO
       </button>
